@@ -26,6 +26,8 @@ function App() {
     }
   }, [])
 
+  console.log('rendered')
+
   const handleLoginFormSubmit = async e => {
     e.preventDefault()
     try {

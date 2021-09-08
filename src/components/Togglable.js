@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Togglable({buttonLabel, children}) {
-  const [visible, setVisible] = React.useState(false)
+function Togglable({buttonLabel, children, defaultVisible = false}) {
+  const [visible, setVisible] = React.useState(defaultVisible)
 
   const toggleVisibility = () => setVisible(visible => !visible)
 
