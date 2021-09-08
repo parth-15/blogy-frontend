@@ -10,6 +10,9 @@ function BlogCreateForm({setNotification}) {
     e.preventDefault()
     await blogService.createNewBlog({title, author, url})
     setNotification(`New blog added by ${author}`)
+    setTitle('')
+    setAuthor('')
+    setUrl('')
     setTimeout(() => {
       setNotification('')
     }, 5000)

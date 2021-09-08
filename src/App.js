@@ -2,7 +2,7 @@ import React from 'react'
 import blogService from './services/Blog'
 import loginService from './services/Login'
 import Blog from './components/Blog'
-import BlogCreateForm from './components/BlogCreateForm'
+import TogglableBlogCreateForm from './components/TogglableBlogCreateForm'
 
 function App() {
   const [user, setUser] = React.useState(null)
@@ -83,7 +83,7 @@ function App() {
       {notification && <h1>{notification}</h1>}
       <h1>{user.username} logged in</h1>
       <button onClick={logOutHandler}>Log out</button>
-      <BlogCreateForm setNotification={setNotification} />
+      <TogglableBlogCreateForm setNotification={setNotification} />
       <h2>Blogs</h2>
       {blogs.map(blog => (
         <Blog key={blog.id} blog={blog} />
