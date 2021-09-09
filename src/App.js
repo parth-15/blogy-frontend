@@ -1,15 +1,18 @@
 import React from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import blogService from './services/Blog'
 import loginService from './services/Login'
 import TogglableBlogCreateForm from './components/TogglableBlogCreateForm'
 import AllBlogs from './components/AllBlogs'
+import Notification from './components/Notification'
+import {setErrorNotification} from './reducers/notificationReducer'
 
 function App() {
   const [user, setUser] = React.useState(null)
   const [blogs, setBlogs] = React.useState([])
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [notification, setNotification] = React.useState(null)
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
     blogService.getAllBlogs().then(blogs => setBlogs(blogs))
@@ -26,8 +29,6 @@ function App() {
     }
   }, [])
 
-  console.log('rendered')
-
   const handleLoginFormSubmit = async e => {
     e.preventDefault()
     try {
@@ -39,10 +40,7 @@ function App() {
       window.localStorage.setItem('user', JSON.stringify(user))
       blogService.setToken(user.token)
     } catch (e) {
-      setNotification('Wrong username or password')
-      setTimeout(() => {
-        setNotification(null)
-      }, 5000)
+      dispatch(setErrorNotification('Wrong username or password', 5))
     }
   }
 
@@ -54,7 +52,7 @@ function App() {
   if (user === null) {
     return (
       <>
-        {notification && <h1>{notification}</h1>}
+        <Notification />
         <h2>Log in to application</h2>
         <form onSubmit={handleLoginFormSubmit}>
           <label>
@@ -82,10 +80,11 @@ function App() {
   }
   return (
     <>
-      {notification && <h1>{notification}</h1>}
+      <Notification />
+      {/* {notification && <h1>{notification}</h1>} */}
       <h1>{user.username} logged in</h1>
       <button onClick={logOutHandler}>Log out</button>
-      <TogglableBlogCreateForm setNotification={setNotification} />
+      <TogglableBlogCreateForm />
       <AllBlogs blogs={blogs} />
     </>
   )

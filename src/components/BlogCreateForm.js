@@ -1,21 +1,29 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
 import blogService from '../services/Blog'
+import {
+  setErrorNotification,
+  setInfoNotification,
+} from '../reducers/notificationReducer'
 
-function BlogCreateForm({setNotification}) {
+function BlogCreateForm() {
   const [title, setTitle] = React.useState('')
   const [author, setAuthor] = React.useState('')
   const [url, setUrl] = React.useState('')
+  const dispatch = useDispatch()
 
   const addBlogHandler = async e => {
     e.preventDefault()
-    await blogService.createNewBlog({title, author, url})
-    setNotification(`New blog added by ${author}`)
-    setTitle('')
-    setAuthor('')
-    setUrl('')
-    setTimeout(() => {
-      setNotification('')
-    }, 5000)
+    try {
+      await blogService.createNewBlog({title, author, url})
+      dispatch(setInfoNotification(`New blog added by ${author}`, 5))
+    } catch (e) {
+      dispatch(setErrorNotification('Something went wrong while blog creation'))
+    } finally {
+      setTitle('')
+      setAuthor('')
+      setUrl('')
+    }
   }
 
   return (
