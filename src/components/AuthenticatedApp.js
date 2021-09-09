@@ -6,9 +6,11 @@ import Notification from './Notification'
 import LogoutButton from './LogoutButton'
 import {getAllBlogs} from '../reducers/blogReducer'
 import {getUserInfo} from '../reducers/loginReducer'
+import AllUsers from './AllUsers'
+import {getAllUsers} from '../reducers/userReducer'
 
 function AuthenticatedApp() {
-  const user = useSelector(state => state.login)
+  const loggedUser = useSelector(state => state.login)
   const blogs = useSelector(state => state.blogs)
   const dispatch = useDispatch()
 
@@ -20,13 +22,18 @@ function AuthenticatedApp() {
     dispatch(getUserInfo())
   }, [])
 
+  React.useEffect(() => {
+    dispatch(getAllUsers())
+  }, [])
+
   return (
     <>
       <Notification />
-      <h1>{user.username} logged in</h1>
+      <h1>{loggedUser.username} logged in</h1>
       <LogoutButton />
       <TogglableBlogCreateForm />
       <AllBlogs blogs={blogs} />
+      <AllUsers />
     </>
   )
 }
