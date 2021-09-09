@@ -7,47 +7,34 @@ import AllBlogs from './components/AllBlogs'
 import Notification from './components/Notification'
 import {setErrorNotification} from './reducers/notificationReducer'
 import {getAllBlogs} from './reducers/blogReducer'
+import {getUserInfo, login, logout} from './reducers/loginReducer'
 
 function App() {
-  const [user, setUser] = React.useState(null)
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const dispatch = useDispatch()
   const blogs = useSelector(state => state.blogs)
+  const user = useSelector(state => state.login)
 
   React.useEffect(() => {
     dispatch(getAllBlogs())
   }, [])
 
   React.useEffect(() => {
-    const userString = window.localStorage.getItem('user')
-    if (userString) {
-      const userString = window.localStorage.getItem('user')
-      const user = JSON.parse(userString)
-      setUser(user)
-      console.log('User is ', user)
-      blogService.setToken(user.token)
-    }
+    dispatch(getUserInfo())
   }, [])
 
   const handleLoginFormSubmit = async e => {
     e.preventDefault()
     try {
-      const user = await loginService.login({
-        username,
-        password,
-      })
-      setUser(user)
-      window.localStorage.setItem('user', JSON.stringify(user))
-      blogService.setToken(user.token)
+      dispatch(login(username, password))
     } catch (e) {
       dispatch(setErrorNotification('Wrong username or password', 5))
     }
   }
 
   const logOutHandler = () => {
-    window.localStorage.removeItem('user')
-    setUser(null)
+    dispatch(logout())
   }
 
   if (user === null) {
