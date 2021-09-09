@@ -1,21 +1,23 @@
 import React from 'react'
 import blogService from '../services/Blog'
+import {likeBlog} from '../reducers/blogReducer'
+import {useDispatch} from 'react-redux'
+
+//TODO: Add delete blog functionality
 
 function Blog({blog}) {
-  const [blogToDisplay, setBlogToDisplay] = React.useState(blog)
+  const dispatch = useDispatch()
 
   const onLikeHandler = async () => {
-    const newBlogToDisplay = {...blogToDisplay, likes: blogToDisplay.likes + 1}
-    setBlogToDisplay(newBlogToDisplay)
-    await blogService.updateBlog(newBlogToDisplay)
+    dispatch(likeBlog(blog))
   }
 
   return (
     <>
-      <h2>Title - {blogToDisplay.title}</h2>
-      <p>Author - {blogToDisplay.author}</p>
-      <p>URL - {blogToDisplay.url}</p>
-      <p>Likes - {blogToDisplay.likes}</p>
+      <h2>Title - {blog.title}</h2>
+      <p>Author - {blog.author}</p>
+      <p>URL - {blog.url}</p>
+      <p>Likes - {blog.likes}</p>
       <button onClick={onLikeHandler}>Like</button>
     </>
   )

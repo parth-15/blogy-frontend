@@ -6,16 +6,17 @@ import TogglableBlogCreateForm from './components/TogglableBlogCreateForm'
 import AllBlogs from './components/AllBlogs'
 import Notification from './components/Notification'
 import {setErrorNotification} from './reducers/notificationReducer'
+import {getAllBlogs} from './reducers/blogReducer'
 
 function App() {
   const [user, setUser] = React.useState(null)
-  const [blogs, setBlogs] = React.useState([])
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const dispatch = useDispatch()
+  const blogs = useSelector(state => state.blogs)
 
   React.useEffect(() => {
-    blogService.getAllBlogs().then(blogs => setBlogs(blogs))
+    dispatch(getAllBlogs())
   }, [])
 
   React.useEffect(() => {

@@ -5,6 +5,7 @@ import {
   setErrorNotification,
   setInfoNotification,
 } from '../reducers/notificationReducer'
+import {createNewBlog} from '../reducers/blogReducer'
 
 function BlogCreateForm() {
   const [title, setTitle] = React.useState('')
@@ -15,7 +16,8 @@ function BlogCreateForm() {
   const addBlogHandler = async e => {
     e.preventDefault()
     try {
-      await blogService.createNewBlog({title, author, url})
+      // await blogService.createNewBlog({title, author, url})
+      await dispatch(createNewBlog({title, author, url}))
       dispatch(setInfoNotification(`New blog added by ${author}`, 5))
     } catch (e) {
       dispatch(setErrorNotification('Something went wrong while blog creation'))
