@@ -8,6 +8,7 @@ import {
 import {useDispatch} from 'react-redux'
 import Notification from './Notification'
 import {useHistory} from 'react-router-dom'
+import {Stack, HStack, VStack, Box} from '@chakra-ui/react'
 
 function SignUpForm() {
   const [username, setUsername] = React.useState('')
@@ -34,47 +35,51 @@ function SignUpForm() {
 
   return (
     <>
-      <Heading as="h2" size="lg">
-        Signup to the Application
-      </Heading>
-      <Notification />
-      <form onSubmit={onSignUpSubmit}>
-        <FormControl id="name" isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input
-            placeholder="Name"
-            type="text"
-            onChange={e => setName(e.target.value)}
-          />
-        </FormControl>
-        <FormControl id="username" isRequired>
-          <FormLabel>Username</FormLabel>
-          <Input
-            placeholder="Username"
-            type="text"
-            onChange={e => setUsername(e.target.value)}
-          />
-        </FormControl>
-        <FormControl id="password" isRequired>
-          <FormLabel>Password</FormLabel>
-          <Input
-            placeholder="Password"
-            type="password"
-            onChange={e => setPassword(e.target.value)}
-          />
-        </FormControl>
-        <FormControl id="confirm-password" isRequired>
-          <FormLabel>Confirm Password</FormLabel>
-          <Input
-            placeholder="Confirm Password"
-            type="password"
-            onChange={e => setConfirmPassword(e.target.value)}
-          />
-        </FormControl>
-        <Button type="submit" colorScheme="blue">
-          Sign up
-        </Button>
-      </form>
+      <VStack py={5}>
+        <Heading as="h2" size="lg">
+          Signup to the Application
+        </Heading>
+
+        <Box width="40%" py={5} px={5}>
+          <form onSubmit={onSignUpSubmit}>
+            <FormControl id="name" isRequired>
+              <FormLabel>Name</FormLabel>
+              <Input
+                placeholder="Name"
+                type="text"
+                onChange={e => setName(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="username" py={5} isRequired>
+              <FormLabel>Username</FormLabel>
+              <Input
+                placeholder="Username"
+                type="text"
+                onChange={e => setUsername(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Password</FormLabel>
+              <Input
+                placeholder="Password"
+                type="password"
+                onChange={e => setPassword(e.target.value)}
+              />
+            </FormControl>
+            <FormControl id="confirm-password" py={5} isRequired>
+              <FormLabel>Confirm Password</FormLabel>
+              <Input
+                placeholder="Confirm Password"
+                type="password"
+                onChange={e => setConfirmPassword(e.target.value)}
+              />
+            </FormControl>
+            <Button type="submit" colorScheme="blue">
+              Sign up
+            </Button>
+          </form>
+        </Box>
+      </VStack>
     </>
   )
 }

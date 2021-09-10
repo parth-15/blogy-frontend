@@ -1,5 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
+import {Alert, AlertIcon} from '@chakra-ui/react'
 
 function Notification() {
   const notification = useSelector(state => state.notification)
@@ -8,10 +9,20 @@ function Notification() {
   }
 
   if (notification.info) {
-    return <h2>Info - {notification.info}</h2>
+    return (
+      <Alert status="success" variant="subtle">
+        <AlertIcon />
+        {notification.info}
+      </Alert>
+    )
   }
   if (notification.error) {
-    return <h2>Error - {notification.error}</h2>
+    return (
+      <Alert status="error">
+        <AlertIcon />
+        {notification.error}{' '}
+      </Alert>
+    )
   }
   return null
 }

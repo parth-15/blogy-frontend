@@ -2,8 +2,9 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {logout} from '../reducers/loginReducer'
+import {Button} from '@chakra-ui/react'
 
-function LogoutButton({to}) {
+function LogoutButton() {
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -13,9 +14,9 @@ function LogoutButton({to}) {
     history.push(loginPath)
   }
   return (
-    <button onClick={logOutHandler} to={to}>
+    <Button onClick={logOutHandler} size="lg" colorScheme="teal">
       Log out
-    </button>
+    </Button>
   )
 }
 
