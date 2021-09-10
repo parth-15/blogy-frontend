@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import TogglableBlog from './TogglableBlog'
 import {useSelector, useDispatch} from 'react-redux'
 import {getAllBlogs} from '../reducers/blogReducer'
+import {Link} from 'react-router-dom'
 
 function AllBlogs() {
   const blogs = useSelector(state => state.blogs)
@@ -26,7 +27,9 @@ function AllBlogs() {
       <h2>Blogs</h2>
       <button onClick={sortByLikes}>Sort by Likes</button>
       {blogsToDisplay.map(blog => (
-        <TogglableBlog key={blog.id} blog={blog} />
+        <Link key={blog.id} to={`/blogs/${blog.id}`}>
+          <TogglableBlog blog={blog} />
+        </Link>
       ))}
     </>
   )

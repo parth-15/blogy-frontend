@@ -20,7 +20,6 @@ function AuthenticatedApp() {
   // }, [])
 
   React.useEffect(() => {
-    dispatch(getUserInfo())
     history.push('/')
   }, [])
 

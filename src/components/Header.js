@@ -6,7 +6,7 @@ import {getUserInfo} from '../reducers/loginReducer'
 
 function Header() {
   const loggedUser = useSelector(state => state.login)
-  const dispatch = useDispatch(0)
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
     dispatch(getUserInfo())
