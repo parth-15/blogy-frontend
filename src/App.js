@@ -8,12 +8,22 @@ import AllBlogs from './components/AllBlogs'
 import Header from './components/Header'
 import Blog from './components/Blog'
 import User from './components/User'
+import LoginForm from './components/LoginForm'
+import SignUpForm from './components/SignUpForm'
 
 function App() {
   const user = useSelector(state => state.login)
 
   if (user === null) {
-    return <UnAuthenticatedApp />
+    return (
+      <>
+        <Switch>
+          <Route path="/signup" component={SignUpForm} />
+          <Route path="/login" component={LoginForm} />
+          <Route path="/" component={UnAuthenticatedApp} />
+        </Switch>
+      </>
+    )
   }
   return (
     <>

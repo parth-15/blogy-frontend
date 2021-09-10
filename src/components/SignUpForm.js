@@ -23,45 +23,48 @@ function SignUpForm() {
   }
 
   return (
-    <form onSubmit={onSignUpSubmit}>
-      <label>
-        Name:
-        <input
-          type="text"
-          value={name}
-          name="name"
-          onChange={e => setName(e.target.value)}
-        />
-      </label>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          name="username"
-          onChange={e => setUsername(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          name="password"
-          onChange={e => setPassword(e.target.value)}
-        />
-      </label>
-      <label>
-        Confirm Password:
-        <input
-          type="password"
-          value={confirmPassword}
-          name="confirmPassword"
-          onChange={e => setConfirmPassword(e.target.value)}
-        />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    <>
+      <h1>Signup to the Application</h1>
+      <form onSubmit={onSignUpSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={name}
+            name="name"
+            onChange={e => setName(e.target.value)}
+          />
+        </label>
+        <label>
+          Username:
+          <input
+            type="text"
+            value={username}
+            name="username"
+            onChange={e => setUsername(e.target.value)}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            value={password}
+            name="password"
+            onChange={e => setPassword(e.target.value)}
+          />
+        </label>
+        <label>
+          Confirm Password:
+          <input
+            type="password"
+            value={confirmPassword}
+            name="confirmPassword"
+            onChange={e => setConfirmPassword(e.target.value)}
+          />
+        </label>
+        <button type="submit">Register</button>
+      </form>
+    </>
   )
 }
 
