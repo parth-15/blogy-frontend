@@ -1,11 +1,10 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import blogService from '../services/Blog'
+import {createNewBlog} from '../reducers/blogReducer'
 import {
   setErrorNotification,
   setInfoNotification,
 } from '../reducers/notificationReducer'
-import {createNewBlog} from '../reducers/blogReducer'
 
 function BlogCreateForm() {
   const [title, setTitle] = React.useState('')

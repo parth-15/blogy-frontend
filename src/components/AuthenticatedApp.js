@@ -1,23 +1,12 @@
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
-import {useSelector, useDispatch} from 'react-redux'
-import TogglableBlogCreateForm from './TogglableBlogCreateForm'
 import AllBlogs from './AllBlogs'
-import Notification from './Notification'
-import LogoutButton from './LogoutButton'
-import {getAllBlogs} from '../reducers/blogReducer'
-import {getUserInfo} from '../reducers/loginReducer'
 import AllUsers from './AllUsers'
-import Header from './Header'
+import TogglableBlogCreateForm from './TogglableBlogCreateForm'
 
 function AuthenticatedApp() {
-  const loggedUser = useSelector(state => state.login)
-  const dispatch = useDispatch()
   const history = useHistory()
-
-  // React.useEffect(() => {
-  //   dispatch(getAllBlogs())
-  // }, [])
 
   React.useEffect(() => {
     history.push('/')
@@ -25,9 +14,6 @@ function AuthenticatedApp() {
 
   return (
     <>
-      {/* <Notification />
-      <h1>{loggedUser.username} logged in</h1>
-      <LogoutButton /> */}
       <TogglableBlogCreateForm />
       <AllBlogs />
       <AllUsers />

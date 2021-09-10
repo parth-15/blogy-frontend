@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import {logout} from '../reducers/loginReducer'
 import {useHistory} from 'react-router-dom'
+import {logout} from '../reducers/loginReducer'
 
 function LogoutButton({to}) {
   const dispatch = useDispatch()

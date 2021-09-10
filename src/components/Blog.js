@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import blogService from '../services/Blog'
-import {likeBlog} from '../reducers/blogReducer'
+import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {useRouteMatch, useParams} from 'react-router-dom'
-import {getAllBlogs} from '../reducers/blogReducer'
+import {useRouteMatch} from 'react-router-dom'
+import {getAllBlogs, likeBlog} from '../reducers/blogReducer'
 
 //TODO: Add delete blog functionality
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {useRouteMatch, useParams, Link} from 'react-router-dom'
+import {Link, useRouteMatch} from 'react-router-dom'
 import {getAllUsers} from '../reducers/userReducer'
 import Blog from './Blog'
 
