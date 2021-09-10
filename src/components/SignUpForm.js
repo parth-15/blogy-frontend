@@ -1,7 +1,13 @@
 import React from 'react'
+import {Button, FormControl, FormLabel, Heading, Input} from '@chakra-ui/react'
 import {registerUser} from '../reducers/loginReducer'
-import {setErrorNotification} from '../reducers/notificationReducer'
+import {
+  setErrorNotification,
+  setInfoNotification,
+} from '../reducers/notificationReducer'
 import {useDispatch} from 'react-redux'
+import Notification from './Notification'
+import {useHistory} from 'react-router-dom'
 
 function SignUpForm() {
   const [username, setUsername] = React.useState('')
@@ -9,14 +15,18 @@ function SignUpForm() {
   const [confirmPassword, setConfirmPassword] = React.useState('')
   const [name, setName] = React.useState('')
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const onSignUpSubmit = async event => {
     event.preventDefault()
     if (password !== confirmPassword) {
       dispatch(setErrorNotification('Password in two fields should match', 5))
+      return
     }
     try {
       await dispatch(registerUser(username, password, name))
+      dispatch(setInfoNotification('Successfully signed up', 2))
+      history.push('/login')
     } catch (error) {
       dispatch(setErrorNotification('User exists or something went wrong', 5))
     }
@@ -24,45 +34,46 @@ function SignUpForm() {
 
   return (
     <>
-      <h1>Signup to the Application</h1>
+      <Heading as="h2" size="lg">
+        Signup to the Application
+      </Heading>
+      <Notification />
       <form onSubmit={onSignUpSubmit}>
-        <label>
-          Name:
-          <input
+        <FormControl id="name" isRequired>
+          <FormLabel>Name</FormLabel>
+          <Input
+            placeholder="Name"
             type="text"
-            value={name}
-            name="name"
             onChange={e => setName(e.target.value)}
           />
-        </label>
-        <label>
-          Username:
-          <input
+        </FormControl>
+        <FormControl id="username" isRequired>
+          <FormLabel>Username</FormLabel>
+          <Input
+            placeholder="Username"
             type="text"
-            value={username}
-            name="username"
             onChange={e => setUsername(e.target.value)}
           />
-        </label>
-        <label>
-          Password:
-          <input
+        </FormControl>
+        <FormControl id="password" isRequired>
+          <FormLabel>Password</FormLabel>
+          <Input
+            placeholder="Password"
             type="password"
-            value={password}
-            name="password"
             onChange={e => setPassword(e.target.value)}
           />
-        </label>
-        <label>
-          Confirm Password:
-          <input
+        </FormControl>
+        <FormControl id="confirm-password" isRequired>
+          <FormLabel>Confirm Password</FormLabel>
+          <Input
+            placeholder="Confirm Password"
             type="password"
-            value={confirmPassword}
-            name="confirmPassword"
             onChange={e => setConfirmPassword(e.target.value)}
           />
-        </label>
-        <button type="submit">Register</button>
+        </FormControl>
+        <Button type="submit" colorScheme="blue">
+          Sign up
+        </Button>
       </form>
     </>
   )

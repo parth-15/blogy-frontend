@@ -1,7 +1,12 @@
+import {Button, FormControl, FormLabel, Heading, Input} from '@chakra-ui/react'
 import React from 'react'
 import {useDispatch} from 'react-redux'
 import {login} from '../reducers/loginReducer'
-import {setErrorNotification} from '../reducers/notificationReducer'
+import {
+  setErrorNotification,
+  setInfoNotification,
+} from '../reducers/notificationReducer'
+import Notification from './Notification'
 
 function LoginForm() {
   const [username, setUsername] = React.useState('')
@@ -12,6 +17,7 @@ function LoginForm() {
     e.preventDefault()
     try {
       dispatch(login(username, password))
+      dispatch(setInfoNotification('Login Successful', 2))
     } catch (e) {
       dispatch(setErrorNotification('Wrong username or password', 5))
     }
@@ -19,27 +25,32 @@ function LoginForm() {
 
   return (
     <>
-      <h2>Log in to application</h2>
+      <Heading as="h2" size="lg">
+        Log in to application
+      </Heading>
+      <Notification />
+
       <form onSubmit={handleLoginFormSubmit}>
-        <label>
-          Username:
-          <input
+        <FormControl id="username" isRequired>
+          <FormLabel>Username</FormLabel>
+          <Input
             type="text"
-            value={username}
-            name="username"
+            placeholder="Username"
             onChange={e => setUsername(e.target.value)}
           />
-        </label>
-        <label>
-          Password:
-          <input
+        </FormControl>
+
+        <FormControl id="password" isRequired>
+          <FormLabel>Password</FormLabel>
+          <Input
             type="password"
-            value={password}
-            name="password"
+            placeholder="Password"
             onChange={e => setPassword(e.target.value)}
           />
-        </label>
-        <button type="submit">Submit</button>
+        </FormControl>
+        <Button type="submit" colorScheme="blue">
+          Log In
+        </Button>
       </form>
     </>
   )
