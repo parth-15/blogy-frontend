@@ -8,4 +8,10 @@ const getAllUsers = async () => {
   return response.data
 }
 
-export default {getAllUsers}
+const registerUser = async userInfo => {
+  const response = await axios.post(baseUrl, userInfo)
+  console.log('REGISTER_ONE_USER', response.data)
+  return response.data
+}
+
+export default {getAllUsers, registerUser}
