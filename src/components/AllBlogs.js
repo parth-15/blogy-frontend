@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import TogglableBlog from './TogglableBlog'
+import {useSelector, useDispatch} from 'react-redux'
+import {getAllBlogs} from '../reducers/blogReducer'
 
-function AllBlogs({blogs}) {
+function AllBlogs() {
+  const blogs = useSelector(state => state.blogs)
   const [blogsToDisplay, setBlogsToDisplay] = React.useState(blogs)
+  const dispatch = useDispatch()
+
+  React.useEffect(() => {
+    dispatch(getAllBlogs())
+  }, [])
 
   React.useEffect(() => {
     setBlogsToDisplay(blogs)

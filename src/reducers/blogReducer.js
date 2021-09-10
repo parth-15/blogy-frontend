@@ -57,8 +57,8 @@ export const likeBlog = blog => {
   }
 }
 
-export const deleteBlog = blog => {
-  return
-}
+// export const deleteBlog = blog => {
+//   return
+// }
 
 export default blogReducer
