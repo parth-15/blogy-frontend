@@ -4,7 +4,6 @@ import {Link, useRouteMatch, useHistory} from 'react-router-dom'
 import {getAllUsers} from '../reducers/userReducer'
 import Blog from './Blog'
 import {Box, Stack, Heading, Center, Text, Button} from '@chakra-ui/react'
-import {ExternalLinkIcon} from '@chakra-ui/icons'
 
 function User({user}) {
   const dispatch = useDispatch()
