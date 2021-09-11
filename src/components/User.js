@@ -3,7 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link, useRouteMatch, useHistory} from 'react-router-dom'
 import {getAllUsers} from '../reducers/userReducer'
 import Blog from './Blog'
-import {Box, Icon, Heading, Center, Text, Button} from '@chakra-ui/react'
+import {Box, Stack, Heading, Center, Text, Button} from '@chakra-ui/react'
+import {ExternalLinkIcon} from '@chakra-ui/icons'
 
 function User({user}) {
   const dispatch = useDispatch()
@@ -31,24 +32,37 @@ function User({user}) {
 
   return (
     <>
-      <Box p={4} color="gray.600" shadow="md" borderWidth="2px">
-        <Heading as="h3" size="md">
-          Name: {userToDisplay.name}
-        </Heading>
-        <Text>Username: {userToDisplay.username}</Text>
-        <Text pb={15}>Blog Count: {userToDisplay.blogs.length}</Text>
-        {match && (
-          <Button colorScheme="teal" onClick={onCloseHandler}>
-            Close
-          </Button>
-        )}
-        {match &&
-          userToDisplay.blogs.map(blog => (
-            <Link key={blog.id} to={`/blogs/${blog.id}`}>
-              <Blog blog={blog} />
-            </Link>
-          ))}
-      </Box>
+      <Center pt={4}>
+        <Stack
+          p={4}
+          color="gray.600"
+          shadow="md"
+          borderWidth="5px"
+          width="50%"
+          // border="black"
+        >
+          {/* <Box p={4} color="gray.600" shadow="md" borderWidth="2px"> */}
+          <Link to={`/users/${userToDisplay.id}`}>
+            <Heading as="h3" size="md">
+              Name: {userToDisplay.name}
+            </Heading>
+            <Text>Username: {userToDisplay.username}</Text>
+            <Text pb={15}>Blog Count: {userToDisplay.blogs.length}</Text>
+          </Link>
+          {match && (
+            <Button colorScheme="teal" onClick={onCloseHandler}>
+              Close
+            </Button>
+          )}
+          {match &&
+            userToDisplay.blogs.map(blog => (
+              <Link key={blog.id} to={`/blogs/${blog.id}`}>
+                <Blog blog={blog} />
+              </Link>
+            ))}
+          {/* </Box> */}
+        </Stack>
+      </Center>
     </>
   )
 }

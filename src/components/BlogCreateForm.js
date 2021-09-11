@@ -23,7 +23,9 @@ function BlogCreateForm() {
       await dispatch(createNewBlog({title, author, url}))
       dispatch(setInfoNotification(`New blog added by ${author}`, 5))
     } catch (e) {
-      dispatch(setErrorNotification('Something went wrong while blog creation'))
+      dispatch(
+        setErrorNotification('Something went wrong while blog creation', 5),
+      )
     } finally {
       setTitle('')
       setAuthor('')
@@ -33,7 +35,7 @@ function BlogCreateForm() {
 
   return (
     <>
-      <Center py={5} style={{display: visible ? '' : 'none'}}>
+      <Center py={5} mr={15} style={{display: visible ? '' : 'none'}}>
         <Box w="30%">
           <form onSubmit={addBlogHandler}>
             <FormControl id="title" isRequired>
@@ -54,7 +56,7 @@ function BlogCreateForm() {
 
             <FormControl id="url" isRequired>
               <Input
-                type="link"
+                type="url"
                 placeholder="Url"
                 onChange={e => setAuthor(e.target.value)}
               />

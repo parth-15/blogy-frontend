@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import {getAllBlogs} from '../reducers/blogReducer'
 import Blog from './Blog'
 import TogglableBlog from './TogglableBlog'
-import {Box, Icon, Heading, Center, Text, Button} from '@chakra-ui/react'
+import {Box, Stack, VStack, Center, Text, Button} from '@chakra-ui/react'
 
 function AllBlogs() {
   const blogs = useSelector(state => state.blogs)
@@ -26,12 +26,20 @@ function AllBlogs() {
   }
   return (
     <>
-      <Button colorScheme="teal" onClick={sortByLikes}>
-        Sort by Likes
-      </Button>
-      {blogsToDisplay.map(blog => (
-        <Blog key={blog.id} blog={blog} />
-      ))}
+      <Stack color="white" mr={100}>
+        <Center>
+          <Button colorScheme="teal" onClick={sortByLikes} m={5}>
+            Sort by Likes
+          </Button>
+        </Center>
+        {/* <Center> */}
+        <VStack spacing={4} align="stretch">
+          {blogsToDisplay.map(blog => (
+            <Blog key={blog.id} blog={blog} />
+          ))}
+        </VStack>
+        {/* </Center> */}
+      </Stack>
     </>
   )
 }

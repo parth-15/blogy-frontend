@@ -2,7 +2,8 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useRouteMatch, Link, useHistory} from 'react-router-dom'
 import {getAllBlogs, likeBlog} from '../reducers/blogReducer'
-import {Box, Icon, Heading, Center, Text, Button} from '@chakra-ui/react'
+import {HStack, Stack, Heading, Center, Text, Button} from '@chakra-ui/react'
+import {ExternalLinkIcon} from '@chakra-ui/icons'
 
 //TODO: Add delete blog functionality
 
@@ -36,28 +37,40 @@ function Blog({blog}) {
 
   return (
     <>
-      <Box p={4} color="gray.600" shadow="md" borderWidth="2px">
-        <Link to={`/blogs/${blogToDisplay.id}`}>
-          <Heading as="h2" size="lg">
-            {blogToDisplay.title}
-          </Heading>
-          <Text fontSize="md">Author: {blogToDisplay.author}</Text>
-          <Text>Likes: {blogToDisplay.likes}</Text>
+      <Center pt={4}>
+        <Stack
+          p={4}
+          color="gray.600"
+          shadow="md"
+          borderWidth="5px"
+          width="50%"
+          // border="black"
+        >
+          <Link to={`/blogs/${blogToDisplay.id}`}>
+            <Heading as="h2" size="lg">
+              {blogToDisplay.title}
+            </Heading>
+            <Text fontSize="md">Author: {blogToDisplay.author}</Text>
+            <Text>Likes: {blogToDisplay.likes}</Text>
+            {match && (
+              <>
+                <HStack>
+                  <Text>URL: {blogToDisplay.url}</Text>
+                  <ExternalLinkIcon />
+                </HStack>
+                <Button colorScheme="teal" onClick={onLikeHandler}>
+                  Like
+                </Button>
+              </>
+            )}
+          </Link>
           {match && (
-            <>
-              <Text>URL: {blogToDisplay.url}</Text>
-              <Button colorScheme="teal" onClick={onLikeHandler}>
-                Like
-              </Button>
-            </>
+            <Button colorScheme="teal" ml={5} onClick={onCloseHandler}>
+              Close
+            </Button>
           )}
-        </Link>
-        {match && (
-          <Button colorScheme="teal" ml={5} onClick={onCloseHandler}>
-            Close
-          </Button>
-        )}
-      </Box>
+        </Stack>
+      </Center>
     </>
   )
 }
