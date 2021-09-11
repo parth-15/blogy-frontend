@@ -2,7 +2,7 @@ import React from 'react'
 import {useHistory} from 'react-router'
 import AllBlogs from './AllBlogs'
 import AllUsers from './AllUsers'
-import TogglableBlogCreateForm from './TogglableBlogCreateForm'
+import BlogCreateForm from './BlogCreateForm'
 
 function AuthenticatedApp() {
   const history = useHistory()
@@ -13,7 +13,7 @@ function AuthenticatedApp() {
 
   return (
     <>
-      <TogglableBlogCreateForm />
+      <BlogCreateForm />
       <AllBlogs />
       <AllUsers />
     </>

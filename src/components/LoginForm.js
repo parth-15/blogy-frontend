@@ -8,8 +8,6 @@ import {
 } from '../reducers/notificationReducer'
 import {Stack, HStack, VStack, Box} from '@chakra-ui/react'
 
-import Notification from './Notification'
-
 function LoginForm() {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')

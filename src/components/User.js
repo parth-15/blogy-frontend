@@ -1,8 +1,9 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {Link, useRouteMatch} from 'react-router-dom'
+import {Link, useRouteMatch, useHistory} from 'react-router-dom'
 import {getAllUsers} from '../reducers/userReducer'
 import Blog from './Blog'
+import {Box, Icon, Heading, Center, Text, Button} from '@chakra-ui/react'
 
 function User({user}) {
   const dispatch = useDispatch()
@@ -11,6 +12,7 @@ function User({user}) {
   const userToDisplay = match
     ? allUsers.find(user => user.id === match.params.id)
     : user
+  const history = useHistory()
 
   React.useEffect(() => {
     if (userToDisplay) {
@@ -23,17 +25,30 @@ function User({user}) {
     return <h1>Loading...</h1>
   }
 
+  const onCloseHandler = () => {
+    history.push('/users')
+  }
+
   return (
     <>
-      <h1>Name: {userToDisplay.name}</h1>
-      <div>Username: {userToDisplay.username}</div>
-      <div>No. of Blogs: {userToDisplay.blogs.length}</div>
-      {match &&
-        userToDisplay.blogs.map(blog => (
-          <Link key={blog.id} to={`/blogs/${blog.id}`}>
-            <Blog blog={blog} />
-          </Link>
-        ))}
+      <Box p={4} color="gray.600" shadow="md" borderWidth="2px">
+        <Heading as="h3" size="md">
+          Name: {userToDisplay.name}
+        </Heading>
+        <Text>Username: {userToDisplay.username}</Text>
+        <Text pb={15}>Blog Count: {userToDisplay.blogs.length}</Text>
+        {match && (
+          <Button colorScheme="teal" onClick={onCloseHandler}>
+            Close
+          </Button>
+        )}
+        {match &&
+          userToDisplay.blogs.map(blog => (
+            <Link key={blog.id} to={`/blogs/${blog.id}`}>
+              <Blog blog={blog} />
+            </Link>
+          ))}
+      </Box>
     </>
   )
 }

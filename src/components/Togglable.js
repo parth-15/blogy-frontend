@@ -1,4 +1,15 @@
 import React from 'react'
+import {
+  Stack,
+  HStack,
+  VStack,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Center,
+} from '@chakra-ui/react'
 
 function Togglable({buttonLabel, children, defaultVisible = false}) {
   const [visible, setVisible] = React.useState(defaultVisible)
@@ -12,7 +23,9 @@ function Togglable({buttonLabel, children, defaultVisible = false}) {
       </div>
       <div style={{display: visible ? '' : 'none'}}>
         {children}
-        <button onClick={toggleVisibility}>cancel</button>
+        <Button colorScheme="teal" onClick={toggleVisibility}>
+          Cancel
+        </Button>
       </div>
     </>
   )

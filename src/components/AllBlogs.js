@@ -2,7 +2,9 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getAllBlogs} from '../reducers/blogReducer'
+import Blog from './Blog'
 import TogglableBlog from './TogglableBlog'
+import {Box, Icon, Heading, Center, Text, Button} from '@chakra-ui/react'
 
 function AllBlogs() {
   const blogs = useSelector(state => state.blogs)
@@ -19,17 +21,16 @@ function AllBlogs() {
 
   const sortByLikes = () => {
     setBlogsToDisplay([
-      ...blogsToDisplay.sort((blog1, blog2) => blog1.likes - blog2.likes),
+      ...blogsToDisplay.sort((blog1, blog2) => blog2.likes - blog1.likes),
     ])
   }
   return (
     <>
-      <h2>Blogs</h2>
-      <button onClick={sortByLikes}>Sort by Likes</button>
+      <Button colorScheme="teal" onClick={sortByLikes}>
+        Sort by Likes
+      </Button>
       {blogsToDisplay.map(blog => (
-        <Link key={blog.id} to={`/blogs/${blog.id}`}>
-          <TogglableBlog blog={blog} />
-        </Link>
+        <Blog key={blog.id} blog={blog} />
       ))}
     </>
   )
