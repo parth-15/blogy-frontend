@@ -1,9 +1,10 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {useRouteMatch, Link, useHistory} from 'react-router-dom'
+import {useRouteMatch, useHistory} from 'react-router-dom'
 import {getAllBlogs, likeBlog} from '../reducers/blogReducer'
 import {HStack, Stack, Heading, Center, Text, Button} from '@chakra-ui/react'
 import {ExternalLinkIcon} from '@chakra-ui/icons'
+import {Link} from '@chakra-ui/react'
 
 //TODO: Add delete blog functionality
 
@@ -46,24 +47,26 @@ function Blog({blog}) {
           width="50%"
           // border="black"
         >
-          <Link to={`/blogs/${blogToDisplay.id}`}>
-            <Heading as="h2" size="lg">
-              {blogToDisplay.title}
-            </Heading>
-            <Text fontSize="md">Author: {blogToDisplay.author}</Text>
-            <Text>Likes: {blogToDisplay.likes}</Text>
-            {match && (
-              <>
-                <HStack>
-                  <Text>URL: {blogToDisplay.url}</Text>
-                  <ExternalLinkIcon />
-                </HStack>
-                <Button colorScheme="teal" onClick={onLikeHandler}>
-                  Like
-                </Button>
-              </>
-            )}
-          </Link>
+          {/* <Link to={`/blogs/${blogToDisplay.id}`}> */}
+          <Heading as="h2" size="lg">
+            {blogToDisplay.title}
+          </Heading>
+          <Text fontSize="md">Author: {blogToDisplay.author}</Text>
+          <Text>Likes: {blogToDisplay.likes}</Text>
+          {match && (
+            <>
+              <HStack>
+                <Link href={blogToDisplay.url} isExternal>
+                  URL: {blogToDisplay.url}
+                </Link>
+                <ExternalLinkIcon />
+              </HStack>
+              <Button colorScheme="teal" onClick={onLikeHandler}>
+                Like
+              </Button>
+            </>
+          )}
+          {/* </Link> */}
           {match && (
             <Button colorScheme="teal" ml={5} onClick={onCloseHandler}>
               Close

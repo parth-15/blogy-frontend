@@ -58,7 +58,7 @@ function BlogCreateForm() {
               <Input
                 type="url"
                 placeholder="Url"
-                onChange={e => setAuthor(e.target.value)}
+                onChange={e => setUrl(e.target.value)}
               />
             </FormControl>
 

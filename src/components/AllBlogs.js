@@ -35,7 +35,9 @@ function AllBlogs() {
         {/* <Center> */}
         <VStack spacing={4} align="stretch">
           {blogsToDisplay.map(blog => (
-            <Blog key={blog.id} blog={blog} />
+            <Link key={blog.id} to={`/blogs/${blog.id}`}>
+              <Blog blog={blog} />
+            </Link>
           ))}
         </VStack>
         {/* </Center> */}
