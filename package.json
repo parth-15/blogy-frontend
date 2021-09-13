@@ -50,5 +50,9 @@
     "eslint-plugin-react": "^7.25.1",
     "prettier": "2.3.2"
   },
-  "proxy": "http://localhost:3003"
+  "engines": {
+    "npm": "7.21.1",
+    "node": "14.17.5"
+  },
+  "proxy": "http://blogy-backend.herokuapp.com/"
 }

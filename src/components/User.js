@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link, useRouteMatch, useHistory} from 'react-router-dom'
 import {getAllUsers} from '../reducers/userReducer'
 import Blog from './Blog'
-import {Box, Stack, Heading, Center, Text, Button} from '@chakra-ui/react'
+import {Stack, Heading, Center, Text, Button} from '@chakra-ui/react'
 
 function User({user}) {
   const dispatch = useDispatch()

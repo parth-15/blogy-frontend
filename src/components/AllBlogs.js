@@ -3,8 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getAllBlogs} from '../reducers/blogReducer'
 import Blog from './Blog'
-import TogglableBlog from './TogglableBlog'
-import {Box, Stack, VStack, Center, Text, Button} from '@chakra-ui/react'
+import {Stack, VStack, Center, Button} from '@chakra-ui/react'
 
 function AllBlogs() {
   const blogs = useSelector(state => state.blogs)

@@ -6,7 +6,7 @@ import {
   setErrorNotification,
   setInfoNotification,
 } from '../reducers/notificationReducer'
-import {Stack, HStack, VStack, Box} from '@chakra-ui/react'
+import {VStack, Box} from '@chakra-ui/react'
 
 function LoginForm() {
   const [username, setUsername] = React.useState('')

@@ -6,9 +6,8 @@ import {
   setInfoNotification,
 } from '../reducers/notificationReducer'
 import {useDispatch} from 'react-redux'
-import Notification from './Notification'
 import {useHistory} from 'react-router-dom'
-import {Stack, HStack, VStack, Box} from '@chakra-ui/react'
+import {VStack, Box} from '@chakra-ui/react'
 
 function SignUpForm() {
   const [username, setUsername] = React.useState('')
