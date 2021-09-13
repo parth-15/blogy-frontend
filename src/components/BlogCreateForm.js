@@ -42,6 +42,7 @@ function BlogCreateForm() {
               <Input
                 type="text"
                 placeholder="Title"
+                value={title}
                 onChange={e => setTitle(e.target.value)}
               />
             </FormControl>
@@ -50,6 +51,7 @@ function BlogCreateForm() {
               <Input
                 type="text"
                 placeholder="Author"
+                value={author}
                 onChange={e => setAuthor(e.target.value)}
               />
             </FormControl>
@@ -58,6 +60,7 @@ function BlogCreateForm() {
               <Input
                 type="url"
                 placeholder="Url"
+                value={url}
                 onChange={e => setUrl(e.target.value)}
               />
             </FormControl>
